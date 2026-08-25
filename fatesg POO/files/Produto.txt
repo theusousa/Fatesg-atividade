@@ -1,0 +1,24 @@
+public class Produto {
+    public String nome;
+    private Double preco;
+    protected int quantidade;
+
+    public Produto(String nome, Double preco, int quantidade){
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidade = quantidade;
+    }
+
+    public void venderProduto(int unidades){
+        if (unidades > quantidade) {
+            System.out.println("Fora de estoque");
+        }else{
+            quantidade -= quantidade;
+        }
+    }
+
+    public void exibirInfo(){
+        this.nome = nome;
+        this.quantidade = quantidade;
+    }
+}
