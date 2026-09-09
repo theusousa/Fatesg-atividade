@@ -1,0 +1,11 @@
+1. Por que saldo não tem setSaldo() público, mas salario tem setSalario() público?
+Porque o salário pode precisar ser corrigido ou reajustado diretamente como uma ação de RH, então faz sentido ter um setter validado pra isso. Já o saldo da conta só deve mudar como resultado de uma operação real (depósito ou saque) — se existisse um setSaldo() público, dava pra alterar o valor da conta sem nenhuma transação de verdade, o que quebraria o controle financeiro.
+
+2. Diferença prática entre deixar um atributo protected e deixar private com getter/setter públicos?
+Com protected, as subclasses têm acesso direto ao atributo e podem alterá-lo sem passar por nenhuma validação. Com private + getter/setter, mesmo as subclasses são obrigadas a usar os métodos da classe pai, então a validação nunca é pulada, nem por quem herda a classe.
+
+3. Por que aplicarAumento() chama setSalario() em vez de alterar salario direto, mesmo estando na mesma classe?
+Pra não duplicar a regra de validação. Se aplicarAumento() mexesse direto no atributo, a checagem de "salário > 0" teria que ser reescrita ali também. Chamando setSalario(), qualquer forma de mudar o salário passa sempre pelo mesmo filtro.
+
+4. Exemplo (fora dos exercícios) de um atributo que faria sentido ser public:
+Numa classe Produto, o atributo nomeExibicao pode ser public, porque é só um texto pra mostrar na vitrine, sem nenhuma regra de validação — diferente de preco ou estoque, que precisam de controle.
